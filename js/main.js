@@ -1,8 +1,7 @@
 $(document).ready(function(){
-  $("#hide").click(function(){
-    $("p").hide();
-  });
-  $("#show").click(function(){
-    $("p").show();
+  $("#flip")
+    .css('cursor', 'pointer')
+    .click(function(){
+    $("#panel").slideToggle(280, 'swing');
   });
 });

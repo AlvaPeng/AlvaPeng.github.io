@@ -1,0 +1,12 @@
+#panel, #flip {
+    padding: 5px;
+    text-align: center;
+    background-color: #202020;
+    color: #505050;
+}
+
+#panel {
+    background-color: #343434;
+    padding: 50px;
+    display: none;
+}
