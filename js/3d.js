@@ -4,6 +4,10 @@ var SCREEN_HEIGHT = window.innerHeight*0.7;
 var container;
 var camera, scene, renderer;
 
+var mixer;
+
+var clock = new THREE.Clock();
+
 init();
 animate();
 
@@ -45,13 +49,10 @@ function init(){
 	'assets/monkey.glb',
 	function ( gltf ) {
 
-		scene.add( gltf.scene );
-
-		gltf.animations; // Array<THREE.AnimationClip>
-		gltf.scene; // THREE.Group
-		gltf.scenes; // Array<THREE.Group>
-		gltf.cameras; // Array<THREE.Camera>
-		gltf.asset; // Object
+        scene.add( gltf.scene );
+        mixer = new THREE.AnimationMixer( gltf.scene );
+    	var action = mixer.clipAction( gltf.animations[ 0 ] );
+        action.play();
 
 	},
 	// called when loading has errors
@@ -73,6 +74,8 @@ function init(){
 
 function animate(){
     requestAnimationFrame( animate );
+    var delta = clock.getDelta();
+	mixer.update( delta );
     controls.update();
     renderer.render( scene, camera );
 }
