@@ -9,7 +9,6 @@ var mixer;
 var clock = new THREE.Clock();
 
 init();
-animate();
 
 function init(){
     container = document.getElementById('container');
@@ -62,6 +61,7 @@ function init(){
 
 	}
 );
+
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
     container.appendChild( renderer.domElement );
@@ -70,6 +70,8 @@ function init(){
     controls = new THREE.OrbitControls(camera,renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
+
+    animate();
 }
 
 function animate(){
