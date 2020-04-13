@@ -19,7 +19,7 @@ function init(){
     container = document.getElementById('container');
 
     camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 1, 10000 );
-    camera.position.set( 0,0,150 );
+    camera.position.set( 0,0,250 );
 
     loadScene();
     loadBalls();
