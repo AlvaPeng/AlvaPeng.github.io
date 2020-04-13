@@ -1,3 +1,5 @@
+let e = ele => document.querySelector(ele)
+
 var SCREEN_WIDTH = window.innerWidth*0.7;
 var SCREEN_HEIGHT = window.innerHeight*0.7;
 
@@ -7,6 +9,7 @@ var camera, scene, renderer;
 var loader, mixer;
 
 var sphere, sphere1, sphere2;
+var speed = 1;
 
 var clock = new THREE.Clock();
 
@@ -111,14 +114,14 @@ function animate(){
     var radius1 = 25;
     var radius2 = 50;
 
-    sphere.position.x = radius*Math.cos(t);
-    sphere.position.y = radius*Math.sin(t);
+    sphere.position.x = radius*Math.cos(speed*t);
+    sphere.position.y = radius*Math.sin(speed*t);
 
-    sphere1.position.x = radius1*Math.cos(t*0.7);
-    sphere1.position.y = radius1*Math.sin(t*0.7);
+    sphere1.position.x = radius1*Math.cos(speed*t*0.7);
+    sphere1.position.y = radius1*Math.sin(speed*t*0.7);
 
-    sphere2.position.x = radius2*Math.cos(t*0.5);
-    sphere2.position.y = radius2*Math.sin(t*0.5);
+    sphere2.position.x = radius2*Math.cos(speed*t*0.5);
+    sphere2.position.y = radius2*Math.sin(speed*t*0.5);
 
     // sphere1.position.x += 0.1;
 
@@ -127,3 +130,18 @@ function animate(){
     controls.update();
     renderer.render( scene, camera );
 }
+
+let registerBindSliders = () => {
+    let slider = e('#speed')
+    // 捕捉结束的瞬间用 change。 随时监听用 input
+    slider.addEventListener("change", (event) => {
+        let value = event.target.value
+        speed = value;
+    })
+}
+
+let main = () => {
+    registerBindSliders()
+}
+
+main()
