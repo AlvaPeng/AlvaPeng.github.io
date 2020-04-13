@@ -4,7 +4,9 @@ var SCREEN_HEIGHT = window.innerHeight*0.7;
 var container;
 var camera, scene, renderer;
 
-var mixer;
+var loader, mixer;
+
+var sphere, sphere1, sphere2;
 
 var clock = new THREE.Clock();
 
@@ -13,54 +15,12 @@ init();
 function init(){
     container = document.getElementById('container');
 
-    var loader = new THREE.GLTFLoader();
+    camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 1, 10000 );
+    camera.position.set( 0,0,150 );
 
-    camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 0.1, 150 );
-    camera.position.set( 6,15,6 );
-	scene = new THREE.Scene();
-
-    //light
-    var light = new THREE.HemisphereLight( 0x443333, 0x111122 );
-	scene.add( light );
-
-	var light = new THREE.SpotLight();
-	light.angle = Math.PI / 16;
-	light.penumbra = 0.5;
-	light.castShadow = true;
-	light.position.set( 0,20,0 );
-	scene.add( light );
-
-    var light = new THREE.SpotLight();
-	light.angle = Math.PI / 16;
-	light.penumbra = 0.5;
-	light.castShadow = true;
-	light.position.set( 0,20,20 );
-	scene.add( light );
-
-    var light = new THREE.SpotLight();
-	light.angle = Math.PI / 2;
-	light.penumbra = 0.5;
-	light.castShadow = true;
-	light.position.set( -20,0,0 );
-	scene.add( light );
-
-    loader.load(
-	'assets/monkey.glb',
-	function ( gltf ) {
-
-        scene.add( gltf.scene );
-        mixer = new THREE.AnimationMixer( gltf.scene );
-    	var action = mixer.clipAction( gltf.animations[ 0 ] );
-        action.play();
-
-	},
-	// called when loading has errors
-	function ( error ) {
-
-		console.log( 'An error happened' );
-
-	}
-);
+    loadScene();
+    loadBalls();
+    // loadMonkey();
 
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -74,10 +34,96 @@ function init(){
     animate();
 }
 
+function loadBalls(){
+    var geometry = new THREE.SphereGeometry( 3, 32, 32 );
+    var material = new THREE.MeshStandardMaterial({
+	    color:0x7782ed,
+		metalness: 0,
+        roughness: 0.8,
+	    flatShading:true,
+	});
+    sphere = new THREE.Mesh( geometry, material );
+    sphere.position.y = 10;
+    scene.add( sphere );
+
+    var geometry = new THREE.SphereGeometry( 3, 32, 32 );
+    var material = new THREE.MeshStandardMaterial({
+	    color:0x6fd5dd,
+		metalness: 0,
+        roughness: 0.8,
+	    flatShading:true,
+	});
+    sphere1 = new THREE.Mesh( geometry, material );
+    sphere1.position.y = 25;
+    scene.add( sphere1 );
+
+    var geometry = new THREE.SphereGeometry( 3, 32, 32 );
+    var material = new THREE.MeshStandardMaterial({
+	    color:0xc88fff,
+		metalness: 0,
+        roughness: 0.8,
+	    flatShading:true,
+	});
+    sphere2 = new THREE.Mesh( geometry, material );
+    sphere2.position.y = 50;
+    scene.add( sphere2 );
+}
+
+function loadScene(){
+    scene = new THREE.Scene();
+
+    var light = new THREE.HemisphereLight( 0xffffff, 0xffffff );
+	scene.add( light );
+
+    var light = new THREE.SpotLight();
+	light.angle = Math.PI;
+	light.penumbra = 0.2; //光影交界处的半影
+	light.castShadow = true;
+	light.position.set( 0,0,0 );
+	scene.add( light );
+}
+
+function loadMonkey(){
+    loader = new THREE.GLTFLoader();
+    loader.load(
+	'assets/monkey.glb',
+    	function ( gltf ) {
+
+            scene.add( gltf.scene );
+            mixer = new THREE.AnimationMixer( gltf.scene );
+        	var action = mixer.clipAction( gltf.animations[ 0 ] );
+            action.play();
+
+    	},
+    	function ( error ) {
+
+    		console.log( 'An error happened' );
+
+    	}
+    );
+}
+var t = 0;
 function animate(){
     requestAnimationFrame( animate );
-    var delta = clock.getDelta();
-	mixer.update( delta );
+
+    t += 0.05;
+    var radius = 10;
+    var radius1 = 25;
+    var radius2 = 50;
+
+    sphere.position.x = radius*Math.cos(t);
+    sphere.position.y = radius*Math.sin(t);
+
+    sphere1.position.x = radius1*Math.cos(t*0.7);
+    sphere1.position.y = radius1*Math.sin(t*0.7);
+
+    sphere2.position.x = radius2*Math.cos(t*0.5);
+    sphere2.position.y = radius2*Math.sin(t*0.5);
+
+    // sphere1.position.x += 0.1;
+
+    // var delta = clock.getDelta();
+	// mixer.update( delta );
     controls.update();
     renderer.render( scene, camera );
 }
