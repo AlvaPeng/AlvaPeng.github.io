@@ -1,8 +1,12 @@
 let e = ele => document.querySelector(ele)
 
+var func = (x,y) => x*y + 1;
+console.log(func(10,10)); //indeed very intuitive
+
 var SCREEN_WIDTH = window.innerWidth*0.7;
 var SCREEN_HEIGHT = window.innerHeight*0.7;
 
+//*jgh*//
 var container;
 var camera, scene, renderer;
 
@@ -122,6 +126,7 @@ function animate(){
 
     sphere2.position.x = radius2*Math.cos(speed*t*0.5);
     sphere2.position.y = radius2*Math.sin(speed*t*0.5);
+
 
     // sphere1.position.x += 0.1;
 

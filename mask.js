@@ -7,7 +7,7 @@ const radius = 100;
 // The blur amount
 const blurSize = 32;
 
-app.loader.add('grass', 'assets/mask.jpg');
+app.loader.add('grass', 'assets/map-test.png');
 app.loader.load(setup);
 
 function setup(loader, resources) {

@@ -70,6 +70,14 @@ h3{
     font-style: italic;
     color: #f3f3f3
 }
+em{
+    color: #f15a24;
+}
+
+h4{
+    font-weight: 600;
+    color: #f6f6f6;
+}
 
 input[type=range] {
   -webkit-appearance: none;
