@@ -1,4 +1,4 @@
-const app = new PIXI.Application();
+const app = new PIXI.Application({width:1000, height:500});
 document.body.appendChild(app.view);
 
 // Inner radius of the circle
@@ -7,7 +7,7 @@ const radius = 100;
 // The blur amount
 const blurSize = 32;
 
-app.loader.add('grass', 'assets/map-test.png');
+app.loader.add('grass', 'assets/breathing.png');
 app.loader.load(setup);
 
 function setup(loader, resources) {
