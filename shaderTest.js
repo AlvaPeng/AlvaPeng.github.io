@@ -1,5 +1,5 @@
 var container;
-        var camera, scene, renderer;
+        var camera, scene, renderer, controls;
         var uniforms;
 
         init();
@@ -8,12 +8,12 @@ var container;
         function init() {
             container = document.getElementById( 'shader_test' );
 
-            camera = new THREE.Camera();
-            camera.position.z = 0;
+            camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000 );
+            camera.position.z = 1;
 
             scene = new THREE.Scene();
 
-            var geometry = new THREE.BoxBufferGeometry( 2, 2, 2 );
+            var geometry = new THREE.BoxGeometry( 2, 2, 2 );
 
             uniforms = {
                 u_time: { type: "f", value: 1.0 },
@@ -27,6 +27,10 @@ var container;
                 fragmentShader: document.getElementById( 'fragmentShader' ).textContent
             } );
 
+            // let material = new THREE.MeshNormalMaterial({
+            //     color: 0xf2f2f2
+            // })
+
             var mesh = new THREE.Mesh( geometry, material );
             scene.add( mesh );
 
@@ -34,6 +38,8 @@ var container;
             renderer.setPixelRatio( window.devicePixelRatio );
 
             container.appendChild( renderer.domElement );
+
+            controls = new THREE.OrbitControls( camera, renderer.domElement );
 
             onWindowResize();
             window.addEventListener( 'resize', onWindowResize, false );
@@ -52,6 +58,7 @@ var container;
 
         function animate() {
             requestAnimationFrame( animate );
+            controls.update();
             render();
         }
 

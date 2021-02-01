@@ -6,88 +6,39 @@
 </body>
 
 <!-- <script src="https://d3js.org/d3.v5.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.js"></script>
+<script src="js/three.js"></script>
+<script src='js/OrbitControls.js'></script>
 <script id="vertexShader" type="x-shader/x-vertex">
+    varying vec3 vNormal;
+    varying vec3 vRefract;
     void main() {
-        gl_Position = vec4( position, 1.0 );
+		vec4 worldPosition = modelMatrix * vec4( position, 1.0 );
+		vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+		vec3 worldNormal = normalize ( mat3( modelMatrix[0].xyz, modelMatrix[1].xyz, modelMatrix[2].xyz ) * normal;
+		vNormal = normalize( normalMatrix * normal );
+		vec3 I = worldPosition.xyz - cameraPosition;
+		vRefract = refract( normalize( I ), worldNormal, 1.02 );
+		gl_Position = projectionMatrix * mvPosition;
     }
 </script>
 <script id="fragmentShader" type="x-shader/x-fragment">
     #ifdef GL_ES
-precision mediump float;
-#endif
-
-uniform vec2 u_resolution;
-uniform vec2 u_mouse;
-uniform float u_time;
-
-float random (in vec2 _st) {
-    return fract(sin(dot(_st.xy,
-                         vec2(0.020,-0.530)))*
-        43758.5453123);
-}
-float noise (in vec2 _st) {
-    vec2 i = floor(_st);
-    vec2 f = fract(_st);
-
-    // Four corners in 2D of a tile
-    float a = random(i);
-    float b = random(i + vec2(1.0, 0.0));
-    float c = random(i + vec2(0.0, 1.0));
-    float d = random(i + vec2(1.0, 1.0));
-
-    vec2 u = f * f * (3.0 - 2.0 * f);
-
-    return mix(a, b, u.x) +
-            (c - a)* u.y * (1.0 - u.x) +
-            (d - b) * u.x * u.y;
-}
-
-#define NUM_OCTAVES 5
-
-float fbm ( in vec2 _st) {
-    float v = 0.0;
-    float a = 0.556;
-    vec2 shift = vec2(0.100,-0.040);
-    // Rotate to reduce axial bias
-    mat2 rot = mat2(cos(0.5), sin(0.5),
-                    -sin(0.5), cos(0.404));
-    for (int i = 0; i < NUM_OCTAVES; ++i) {
-        v += a * noise(_st);
-        _st = rot * _st * 2.976 + shift;
-        a *= 0.484;
+    precision mediump float;
+    #endif
+    
+    uniform vec2 u_resolution;
+    uniform vec2 u_mouse;
+    uniform float u_time;
+    
+    void main() {
+        vec2 st = gl_FragCoord.xy/u_resolution.xy;
+        st.x *= u_resolution.x/u_resolution.y;
+    
+        vec3 color = vec3(0.);
+        color = vec3(st.x,st.y,abs(sin(u_time)));
+    
+        gl_FragColor = vec4(color,1.0);
     }
-    return v;
-}
 
-void main() {
-    vec2 st = gl_FragCoord.xy/u_resolution.xy*3.;
-    // st += st * abs(sin(u_time*0.1)*3.0);
-    vec3 color = vec3(0.0);
-
-    vec2 q = vec2(0.);
-    q.x = fbm( st + -0.080*u_time);
-    q.y = fbm( st + vec2(-0.250,0.390));
-
-    vec2 r = vec2(0.);
-    r.x = fbm( st + 1.0*q + vec2(0.100,0.300)+ -0.786*u_time );
-    r.y = fbm( st + 1.0*q + vec2(8.3,2.8)+ -0.490*u_time);
-
-    float f = fbm(st);
-
-    color = mix(vec3(0.667 + 10.0*(0.4 - 0.2*u_mouse.x/u_resolution.x),0.233,0.487),
-                vec3(0.587,0.644,0.667 + 10.0*(0.3 - 0.2*u_mouse.y/u_resolution.y)),
-                clamp((f*f)*4.0,0.0,1.0));
-
-    color = mix(color,
-                vec3(0.890,0.282,0.549),
-                clamp(length(q),0.0,1.0));
-
-    color = mix(color,
-                vec3(0.703,0.378,1.000),
-                clamp(length(r.x),0.0,1.0));
-
-    gl_FragColor = vec4((f*f*f+.6*f*f+.5*f)*color,1.);
-}
 </script>
 <script src="shaderTest.js" charset="utf-8"></script>
