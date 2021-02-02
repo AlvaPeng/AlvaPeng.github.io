@@ -9,11 +9,11 @@ var container;
             container = document.getElementById( 'shader_test' );
 
             camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000 );
-            camera.position.z = 1;
+            camera.position.z = 100;
 
             scene = new THREE.Scene();
 
-            var geometry = new THREE.BoxGeometry( 2, 2, 2 );
+            var geometry = new THREE.IcosahedronGeometry( 20, 4 );
 
             uniforms = {
                 u_time: { type: "f", value: 1.0 },

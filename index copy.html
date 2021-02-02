@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body style="background-color: #1a1a1a;">
+    <!-- <div id='eye_roll' style="position:absolute; top: 300px; left:200px"></div> -->
+    <div id='sphere_test'></div>
+</body>
+
+<!-- <script src="https://d3js.org/d3.v5.js"></script> -->
+<script src="js/three.js"></script>
+<script src='js/OrbitControls.js'></script>
+<script id="vertexShader" type="x-shader/x-vertex">
+    varying vec3 vNormal;
+    varying vec3 vRefract;
+    void main() {
+		vec4 worldPosition = modelMatrix * vec4( position, 1.0 );
+		vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+		vec3 worldNormal = normalize ( mat3( modelMatrix[0].xyz, modelMatrix[1].xyz, modelMatrix[2].xyz ) * normal;
+		vNormal = normalize( normalMatrix * normal );
+		vec3 I = worldPosition.xyz - cameraPosition;
+		vRefract = refract( normalize( I ), worldNormal, 1.02 );
+		gl_Position = projectionMatrix * mvPosition;
+    }
+</script>
+<script id="fragmentShader" type="x-shader/x-fragment">
+    #ifdef GL_ES
+    precision mediump float;
+    #endif
+    
+    uniform vec2 u_resolution;
+    uniform vec2 u_mouse;
+    uniform float u_time;
+    
+    void main() {
+        vec2 st = gl_FragCoord.xy/u_resolution.xy;
+        st.x *= u_resolution.x/u_resolution.y;
+    
+        vec3 color = vec3(0.);
+        color = vec3(st.x,st.y,abs(sin(u_time)));
+    
+        gl_FragColor = vec4(color,1.0);
+    }
+
+</script>
+<script src="sphereTest.js" charset="utf-8"></script>
