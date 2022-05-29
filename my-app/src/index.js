@@ -2,58 +2,104 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 
-class Square extends React.Component {
+
+  class FeatureMidi extends React.Component {
     render() {
-      return (
-        <button className="square">
-          {/* TODO */}
-        </button>
-      );
+        return(
+            <div className="feature">
+              <div className="feature_title">
+                {this.props.title}
+              </div>
+              <div className="feature_notion">
+                {this.props.notion}
+              </div>
+            </div>
+        );
     }
   }
-  
-  class Board extends React.Component {
-    renderSquare(i) {
-      return <Square />;
-    }
-  
+
+  class FeatureTips extends React.Component {
     render() {
-      const status = 'Next player: X';
-  
-      return (
-        <div>
-          <div className="status">{status}</div>
-          <div className="board-row">
-            {this.renderSquare(0)}
-            {this.renderSquare(1)}
-            {this.renderSquare(2)}
-          </div>
-          <div className="board-row">
-            {this.renderSquare(3)}
-            {this.renderSquare(4)}
-            {this.renderSquare(5)}
-          </div>
-          <div className="board-row">
-            {this.renderSquare(6)}
-            {this.renderSquare(7)}
-            {this.renderSquare(8)}
-          </div>
-        </div>
-      );
+        return(
+            <div className="feature">
+              <div className="feature_title">
+                {this.props.title}
+              </div>
+              <div className="feature_notion">
+                {this.props.notion}
+              </div>
+            </div>
+        );
     }
   }
-  
-  class Game extends React.Component {
+
+  class FeatureCharacters extends React.Component {
+    render() {
+        return(
+            <div className="feature">
+              <div className="feature_title">
+                {this.props.title}
+              </div>
+              <div className="feature_notion">
+                {this.props.notion}
+              </div>
+            </div>
+        );
+    }
+  }
+
+  class FeatureCourse extends React.Component {
+    render() {
+        return(
+            <div className="feature">
+              <div className="feature_title">
+                {this.props.title}
+              </div>
+              <div className="feature_notion">
+                {this.props.notion}
+              </div>
+            </div>
+        );
+    }
+  }
+
+  class Main extends React.Component {
     render() {
       return (
-        <div className="game">
-          <div className="game-board">
-            <Board />
-          </div>
-          <div className="game-info">
-            <div>{/* status */}</div>
-            <ol>{/* TODO */}</ol>
-          </div>
+        <div className="main">
+            <div className="banner">
+                <img src={require('./assets/bon_music_logo.png')} />
+            </div>
+            
+            <div className="join_button">
+                    <img src={require('./assets/button_join_hover.png')}
+                    onMouseOver={()=>{
+                        this.src = require('./assets/button_join.png')
+                    }}
+                    />
+            </div>
+
+            <div className="intro">
+                <FeatureMidi
+                    title={'make music\non your phone'}
+                    notion={'easier than ever'}
+                />
+
+                <FeatureTips
+                    title={'ultra beginner friendly'}
+                    notion={'ezpz'}
+                />
+
+                <FeatureCharacters
+                    title={'recruit your own animal band'}
+                    notion={'find your favourite characters'}
+                />
+
+                <FeatureCourse
+                    title={'learn music theory with interactive lessons'}
+                    notion={'ebest lessons ever'}
+                />
+            </div>
         </div>
       );
     }
@@ -62,5 +108,5 @@ class Square extends React.Component {
   // ========================================
   
   const root = ReactDOM.createRoot(document.getElementById("root"));
-  root.render(<Game />);
+  root.render(<Main />);
   

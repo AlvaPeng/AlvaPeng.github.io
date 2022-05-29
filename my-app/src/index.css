@@ -1,51 +1,64 @@
+@font-face {
+    font-family: 'arco';
+    src: local('arco'), url(./fonts/ARCO.ttf) format('truetype');
+  }
+
 body {
-    font: 14px "Century Gothic", Futura, sans-serif;
+    font: 14px "arco", Futura, sans-serif;
     margin: 20px;
+    background: #ffdf6c;
   }
-  
-  ol, ul {
-    padding-left: 30px;
-  }
-  
-  .board-row:after {
-    clear: both;
-    content: "";
-    display: table;
-  }
-  
-  .status {
-    margin-bottom: 10px;
-  }
-  
-  .square {
-    background: #fff;
-    border: 1px solid #999;
-    float: left;
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 34px;
-    height: 34px;
-    margin-right: -1px;
-    margin-top: -1px;
-    padding: 0;
+
+.banner {
     text-align: center;
-    width: 34px;
-  }
-  
-  .square:focus {
-    outline: none;
-  }
-  
-  .kbd-navigation .square:focus {
-    background: #ddd;
-  }
-  
-  .game {
+}
+
+.banner img {
+    width: 500px;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.join_button {
+    text-align: center;
+}
+
+.join_button img {
+    width: 400px;
+}
+
+.intro {
     display: flex;
-    flex-direction: row;
-  }
-  
-  .game-info {
-    margin-left: 20px;
-  }
-  
+    flex-direction: column;
+    align-items: center;
+}
+
+.feature {
+    background: white;
+    height: 400px;
+    width: 600px;
+    border-radius: 60px;
+    margin: 30px;
+}
+
+.feature_title {
+    font-size: 30px;
+    letter-spacing: 0.4px;
+    color: #333333;
+    padding-top: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.feature_notion {
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 10px;
+    color: #83b586;
+    font-size: 22px;
+    letter-spacing: 0.3px;
+}
