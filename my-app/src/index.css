@@ -37,6 +37,12 @@ button {
     align-items: center;
 }
 
+.intro_row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .feature {
     background: white;
     height: 400px;
@@ -61,4 +67,12 @@ button {
     color: #83b586;
     font-size: 22px;
     letter-spacing: 0.3px;
+}
+
+.card {
+    width: 200px;
+    margin-left: 3vw;
+    margin-right: 3vw;
+    filter: drop-shadow(0px 0px 5px #33333333);
+    transform: rotate(5deg);
 }

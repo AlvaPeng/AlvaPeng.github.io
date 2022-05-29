@@ -80,25 +80,37 @@ import './index.css';
             </div>
 
             <div className="intro">
+              <div className="intro_row">
                 <FeatureMidi
-                    title={'make music\non your phone'}
+                    title={'make music on your phone'}
                     notion={'easier than ever'}
                 />
-
+                <img className="card" src={require('./assets/card_1.png')} />
+              </div>
+                
+              <div className="intro_row">
+              <img className="card" src={require('./assets/card_2.png')} />
                 <FeatureTips
                     title={'ultra beginner friendly'}
                     notion={'ezpz'}
                 />
+              </div>
 
+              <div className="intro_row">
                 <FeatureCharacters
                     title={'recruit your own animal band'}
                     notion={'find your favourite characters'}
                 />
-
+                <img className="card" src={require('./assets/card_3.png')} />
+              </div>
+              
+              <div className="intro_row">
+                <img className="card" src={require('./assets/card_4.png')} />
                 <FeatureCourse
                     title={'learn music theory with interactive lessons'}
-                    notion={'ebest lessons ever'}
+                    notion={'best lessons ever'}
                 />
+              </div>
             </div>
         </div>
       );
