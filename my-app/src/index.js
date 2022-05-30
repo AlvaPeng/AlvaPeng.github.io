@@ -65,6 +65,7 @@ gsap.registerPlugin(ScrollTrigger);
       </div>
     )
   }
+  
   function Sounds() {
     const icon808 = require('./assets/instruments/icon_808.png')
     const iconBass = require('./assets/instruments/icon_bass.png')
