@@ -22,6 +22,11 @@
     "@babel/runtime" "^7.8.7"
     "csstype" "^3.0.2"
 
+"gsap@^3.10.4":
+  "integrity" "sha512-6QatdkKxXCMfvCW4rM++0RqyLQAzFX5nwl3yHS0XPgkZBkiSEY3VZVbMltrdtsbER/xZonLtyHt684wRp4erlQ=="
+  "resolved" "https://registry.npmjs.org/gsap/-/gsap-3.10.4.tgz"
+  "version" "3.10.4"
+
 "js-tokens@^3.0.0 || ^4.0.0":
   "integrity" "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ=="
   "resolved" "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz"

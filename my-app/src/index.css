@@ -3,12 +3,20 @@
     src: local('arco'), url(./fonts/ARCO.ttf) format('truetype');
   }
 
+  @font-face {
+    font-family: 'averia-bold';
+    src: local('averia-bold'), url(./fonts/AveriaSansLibre-Bold.ttf) format('truetype');
+  }
+
 body {
     font: 14px "arco", Futura, sans-serif;
     margin: 20px;
     background: #ffdf6c;
   }
 
+  .main {
+      cursor: url("./assets/cursors/maggie_wow.png") 30 30,auto;
+  }
 .banner {
     text-align: center;
 }
@@ -17,23 +25,27 @@ body {
     width: 400px;
 }
 
-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
 .join_button {
-    position: fixed;
-    bottom: 100px;
+    position: sticky;
+    top: -1px;
+    padding-top: 10px;
+    margin-top: 30px;
+    bottom: 50px;
     text-align: center;
     z-index: 1;
     left: 0;
     right: 0;
 }
 
+.join_button.isSticky img{
+    width: 300px;
+    transition: .2s;
+}
+
 .join_button img {
     width: 400px;
+    cursor: url("./assets/cursors/sandy_yes.png") 30 30, pointer;
+    transition: .1s;
 }
 
 .intro {
@@ -49,11 +61,13 @@ button {
 }
 
 .feature {
+    position: relative;
     background: white;
-    height: 400px;
+    height: 440px;
     width: 540px;
     border-radius: 60px;
     margin: 30px;
+    cursor: url("./assets/cursors/donut_nice.png") 30 30, pointer;
 }
 
 .feature_title {
@@ -79,7 +93,7 @@ button {
     margin-left: 3vw;
     margin-right: 3vw;
     filter: drop-shadow(0px 0px 5px #33333333);
-    transform: rotate(5deg);
+    cursor: url("./assets/cursors/karl_love.png") 30 30, pointer;
 }
 
 .fall-down-enter {
@@ -92,3 +106,187 @@ button {
     transform: scale(1) translateY(0%);
     transition: all 300ms ease-out;
   }
+
+  .character-container {
+    width: 600px;
+    background: #fbb03b;
+    border-radius: 60px;
+    padding: 10px;
+    margin: 30px;
+  }
+
+  .character-container img{
+      width: 150px;
+  }
+
+  .sounds-container {
+    width: 600px;
+    background: #fbb03b;
+    border-radius: 60px;
+    padding: 10px;
+    margin: 30px;
+  }
+
+  .sounds-container img{
+    width: 100px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 30px;
+    background-color: #f7931e;
+  }
+
+  .items-title {
+    font-size: 26px;
+    letter-spacing: 0.4px;
+    color: #ffffff;
+    padding: 30px;
+}
+
+.midi-container {
+    position: absolute;
+    bottom: 0;
+    overflow: hidden;
+    border-radius: 60px;
+}
+
+.midi-container img {
+    width: 700px;
+    margin-left: -122px;
+    margin-bottom: -146px;
+}
+
+.tips-container {
+    position: absolute;
+    bottom: 0;
+    overflow: hidden;
+    border-radius: 60px;
+}
+
+.bounded {
+    overflow: hidden;
+}
+
+#tip_rhythm {
+    width: 243px;
+    margin-left: 240px;
+    margin-bottom: -260px;
+}
+
+#tip_melody {
+    width: 294px;
+    margin-left: -24px;
+}
+
+#tip_chords {
+    width: 321px;
+    margin-bottom: -156px;
+    margin-left: 68px;
+}
+
+.course img {
+    position: absolute;
+}
+
+#circle {
+    width: 220px;
+    margin-left: 25px;
+    margin-top: 10px;
+}
+
+#box_rhythm {
+    width: 320px;
+    margin-top: 30px;
+}
+
+.trailer-container {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.trailer-container img{
+    height: 432px;
+    margin-right: -6px;
+    cursor: url("./assets/cursors/echo_play_dumb.png") 30 30, pointer;
+}
+
+.trailer-video {
+    background-color: white;
+    width: 768px;
+    height: 432px;
+    border-radius: 10px;
+    padding: 6px;
+}
+
+iframe {
+    border: none
+}
+
+.div-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.footer {
+    background-image: url("./assets/footer_bg.png");
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: -20px;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 40px;
+    padding-top: 80px;
+    background-size: 1000px;
+}
+
+.footer-title {
+    color: #534741;
+    font-size: 24px;
+    letter-spacing: 0.4px;
+    margin: 20px;
+}
+
+.contacts-container {
+    height: 120px;
+}
+
+.contacts-container img {
+    width: 80px;
+    margin: 10px;
+    cursor: url("./assets/cursors/karl_love.png") 30 30, pointer;
+    transition: .2s;
+}
+
+.contacts-container img:hover {
+    width: 100px;
+    transition: .2s;
+}
+
+.footer-notes {
+    color: #736357;
+    font-family: 'averia-bold', Futura, sans-serif;
+    margin-top: 20px;
+}
+
+.birthday-container {
+    background-image: url("./assets/birthday/birthday_bg.png");
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.birthday-head {
+    width: 160px;
+    margin-top: -20px;
+    margin-right: 40px;
+    cursor: url("./assets/cursors/cursor_salute.png") 30 30, pointer;
+}
+
+.birthday-text {
+    width: 281px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}

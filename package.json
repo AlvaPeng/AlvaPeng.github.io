@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
+    "gsap": "^3.10.4",
     "react-transition-group": "^4.4.2"
   },
   "scripts": {
