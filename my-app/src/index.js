@@ -405,7 +405,7 @@ gsap.registerPlugin(ScrollTrigger);
               <img ref={card2Ref} className="card" src={require('./assets/card_2.png')} onClick={handleCard}/>
                 <FeatureTips
                     title={'ultra beginner friendly'}
-                    notion={'ezpz'}
+                    notion={'piece of cake'}
                 />
               </div>
 
